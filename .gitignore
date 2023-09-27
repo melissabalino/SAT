@@ -396,3 +396,8 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+#protecting sensitive data
+/SAT.UI.MVC/appsettings.json
+/SAT/appsettings.json
+/SAT/appsettings.Development.json
