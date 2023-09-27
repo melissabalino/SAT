@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SAT.Models;
+using SAT.UI.MVC.Models;
 using System.Diagnostics;
 
 namespace SAT.Controllers

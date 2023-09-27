@@ -1,4 +1,4 @@
-namespace SAT.Models
+namespace SAT.UI.MVC.Models
 {
     public class ErrorViewModel
     {
