@@ -21,9 +21,10 @@ namespace SAT.UI.MVC.Controllers
         // GET: Courses
         public async Task<IActionResult> Index()
         {
-              return _context.Courses != null ? 
-                          View(await _context.Courses.ToListAsync()) :
-                          Problem("Entity set 'SATContext.Courses'  is null.");
+            ViewBag.Courses = _context.Courses.Select(x => x.CourseId).ToList();
+            return _context.Courses != null ?
+                        View(await _context.Courses.ToListAsync()) :
+                        Problem("Entity set 'SATContext.Courses'  is null.");
         }
 
         // GET: Courses/Details/5
@@ -117,42 +118,45 @@ namespace SAT.UI.MVC.Controllers
             return View(course);
         }
 
-        // GET: Courses/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null || _context.Courses == null)
-            {
-                return NotFound();
-            }
 
-            var course = await _context.Courses
-                .FirstOrDefaultAsync(m => m.CourseId == id);
-            if (course == null)
-            {
-                return NotFound();
-            }
+        #region original delete functionality
+        //// GET: Courses/Delete/5
+        //public async Task<IActionResult> Delete(int? id)
+        //{
+        //    if (id == null || _context.Courses == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return View(course);
-        }
+        //    var course = await _context.Courses
+        //        .FirstOrDefaultAsync(m => m.CourseId == id);
+        //    if (course == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-        // POST: Courses/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            if (_context.Courses == null)
-            {
-                return Problem("Entity set 'SATContext.Courses'  is null.");
-            }
-            var course = await _context.Courses.FindAsync(id);
-            if (course != null)
-            {
-                _context.Courses.Remove(course);
-            }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+        //    return View(course);
+        //}
+
+        //// POST: Courses/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DeleteConfirmed(int id)
+        //{
+        //    if (_context.Courses == null)
+        //    {
+        //        return Problem("Entity set 'SATContext.Courses'  is null.");
+        //    }
+        //    var course = await _context.Courses.FindAsync(id);
+        //    if (course != null)
+        //    {
+        //        _context.Courses.Remove(course);
+        //    }
+
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction(nameof(Index));
+        //}
+        #endregion
 
         private bool CourseExists(int id)
         {
