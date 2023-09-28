@@ -23,7 +23,6 @@ namespace SAT.DATA.EF.Models//.Metadata
         public string CourseName { get; set; } = null!;
 
         [Required(ErrorMessage = "*Course Description is Required.*")]
-        [StringLength(50)]
         [Display(Name = "Course Description")]
         [DataType(DataType.MultilineText)]
         public string CourseDescription { get; set; } = null!;

@@ -21,7 +21,7 @@ namespace SAT.UI.MVC.Controllers
         // GET: Courses
         public async Task<IActionResult> Index()
         {
-            ViewBag.Courses = _context.Courses.Select(x => x.CourseId).ToList();
+            ViewBag.Courses = _context.ScheduledClasses.Select(x => x.CourseId).ToList();
             return _context.Courses != null ?
                         View(await _context.Courses.ToListAsync()) :
                         Problem("Entity set 'SATContext.Courses'  is null.");
@@ -157,6 +157,17 @@ namespace SAT.UI.MVC.Controllers
         //    return RedirectToAction(nameof(Index));
         //}
         #endregion
+        [AcceptVerbs("POST")]
+
+        public JsonResult AjaxDelete(int id)
+        {
+            Course course = _context.Courses.Find(id);
+            _context.Courses.Remove(course);
+            _context.SaveChanges();
+
+            string message = $"Deleted the course {course.CourseName} from the database!";
+            return Json(new { id, message });
+        }
 
         private bool CourseExists(int id)
         {
