@@ -41,48 +41,47 @@
 
             <h1 class="logo me-auto"><a href="index.html">API</a></h1>
             <!-- Uncomment below if you prefer to use an image logo -->
-         @* <a href="index.html" class="logo me-auto"><img src="~/assets/img/logo.png" alt="" class="img-fluid"></a>*@
+            @* <a href="index.html" class="logo me-auto"><img src="~/assets/img/logo.png" alt="" class="img-fluid"></a>*@
 
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
                     <li><a class="" href="@Url.Action("Index","Home")">Home</a></li>
-                    
+
                     @*@if (User.IsInRole("Admin"))
                     {*@
-                        <li class="dropdown">
-                            <a href="#"><span>Admin</span> <i class="bi bi-chevron-down"></i></a>
-                            <ul>
-                                <li><a href="@Url.Action("Index","Courses")">Courses</a></li>
-                                <li><a href="@Url.Action("Index","Enrollments")">Enrollments</a></li>
-                                <li><a href="@Url.Action("Index","ScheduledClasses")">Scheduled Classes</a></li>
-                                <li><a href="@Url.Action("Index","ScheduledClassStatus")">Scheduled Class Status</a></li>
-                                <li><a href="@Url.Action("Index","Students")">Students</a></li>
-                                <li><a href="@Url.Action("Index","StudentStatus")">Student Status</a></li>
-                            </ul>
-                        </li>
+                    <li class="dropdown">
+                        <a href="#"><span>Admin</span> <i class="bi bi-chevron-down"></i></a>
+                        <ul>
+                            <li><a href="@Url.Action("Index","Courses")">Courses</a></li>
+                            <li><a href="@Url.Action("Index","Enrollments")">Enrollments</a></li>
+                            <li><a href="@Url.Action("Index","ScheduledClasses")">Scheduled Classes</a></li>
+                            <li><a href="@Url.Action("Index","ScheduledClassStatus")">Scheduled Class Status</a></li>
+                            <li><a href="@Url.Action("Index","Students")">Students</a></li>
+                            <li><a href="@Url.Action("Index","StudentStatus")">Student Status</a></li>
+                        </ul>
+                    </li>
                     @*}*@
-                   @* @if (User.IsInRole("Scheduler"))
+                    @* @if (User.IsInRole("Scheduler"))
                     {*@
-                        <li class="dropdown">
-                            <a href="#"><span>Scheduler</span> <i class="bi bi-chevron-down"></i></a>
-                            <ul>
-                                <li><a href="@Url.Action("Index","Enrollments")">Enrollments</a></li>
-                                <li><a href="@Url.Action("Index","ScheduledClasses")">Scheduled Classes</a></li>
-                                <li><a href="@Url.Action("Index","ScheduledClassStatus")">Scheduled Class Status</a></li>
-                                <li><a href="@Url.Action("Index","Students")">Students</a></li>
-                            </ul>
-                        </li>
-                   @* }*@
+                    <li class="dropdown">
+                        <a href="#"><span>Scheduler</span> <i class="bi bi-chevron-down"></i></a>
+                        <ul>
+                            <li><a href="@Url.Action("Index","Enrollments")">Enrollments</a></li>
+                            <li><a href="@Url.Action("Index","ScheduledClasses")">Scheduled Classes</a></li>
+                            <li><a href="@Url.Action("Index","ScheduledClassStatus")">Scheduled Class Status</a></li>
+                            <li><a href="@Url.Action("Index","Students")">Students</a></li>
+                        </ul>
+                    </li>
+                    @* }*@
                     <li><a href="contact.html">Contact</a></li>
+                    <partial name="_LoginPartial" />
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
-
-            <a href="courses.html" class="get-started-btn">Get Started</a>
+        
 
         </div>
     </header><!-- End Header -->
-
     <!-- Main Section -->
     <div class="container">
         <main role="main" class="pb-3">
@@ -90,7 +89,6 @@
         </main>
     </div>
     <!-- End Main Section -->
-
     <!-- ======= Footer ======= -->
     <footer id="footer">
 
@@ -142,7 +140,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="container d-md-flex py-4">
 
             <div class="me-md-auto text-center text-md-start">
