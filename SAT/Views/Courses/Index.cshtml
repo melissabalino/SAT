@@ -9,7 +9,16 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+
+<!-- AJAX - Step 06 - Add the message content div. -->
+<div class="row">
+    <div class="mx-auto col-md-6">
+        <div id="MessageContent" class="text-center"></div>
+    </div>
+</div>
+
+<!-- AJAX - Step 03 - ID-->
+<table class="table" id="CoursesTable">
     <thead>
         <tr>
             <th>
@@ -35,9 +44,11 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
+            <!-- AJAX - Step 04 - ID -->
+        <tr id="Course-@item.CourseId">
             <td>
-                @Html.DisplayFor(modelItem => item.CourseName)
+                    <a asp-action="Details" asp-route-id="@item.CourseId">@Html.DisplayFor(modelItem => item.CourseName)</a>
+                
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CourseDescription)
@@ -56,10 +67,51 @@
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.CourseId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CourseId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CourseId">Delete</a>
+
+                    <!-- AJAX - Step 07 - Modify the delete button -->
+                @*<a asp-action="Delete" asp-route-id="@item.CourseId">Delete</a>*@
+                    @if (ViewBag.Courses.Contains(item.CourseId))
+                    {
+                        <a disabled="disabled" class="text-danger">In Use</a>
+                    }
+                    else
+                    {
+                        <a asp-action="AjaxDelete" asp-route-id="@item.CourseId"
+                           data-ajax="true"
+                           data-ajax-confirm="Are you sure you want to delete @item.CourseName?"
+                           data-ajax-failure="deleteFailed"
+                           data-ajax-success="deleteConfirmed"
+                           data-ajax-method="POST">
+                            Delete
+                        </a>
+                    }
+
+
             </td>
         </tr>
 }
     </tbody>
 </table>
+
+<!-- AJAX - Step 05 - Add a scripts section -->
+@section Scripts {
+    <script>
+        //#region AJAX Delete
+        //AJAX - Step 08 - code the deleteConfirmed() and deleteFailed() functions
+        function deleteConfirmed(response, status, data) {
+            //remove the row from the table
+            let rowId = "#Course-" + response.id; //response is sent from the JsonResult in the controller.
+            console.log(rowId);
+            $("#CoursesTable").find(rowId).remove();
+
+            //display the status message
+            $("#MessageContent").removeClass().addClass('alert alert-success').text(response.message);
+        }
+
+        function deleteFailed(response, status, data) {
+            $("#MessageContent").removeClass().addClass('alert alert-danger').text('Delete unsuccessful.');
+
+        }
+                //#endregion
+    </script>
+}
