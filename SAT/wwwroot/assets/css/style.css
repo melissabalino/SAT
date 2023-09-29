@@ -15,12 +15,12 @@ body {
 }
 
 a {
-  color: #0015D6;
+  color: #0015D6 !important;
   text-decoration: none;
 }
 
 a:hover {
-  color: #86db9f;
+  color: #0989FB !important;
   text-decoration: none;
 }
 
@@ -454,7 +454,7 @@ h6 {
   transition: 0.5s;
   margin-top: 30px;
   border: 2px solid #fff;
-  color: #fff;
+  color: #fff!important;
 }
 
 #hero .btn-get-started:hover {
@@ -1263,6 +1263,22 @@ section {
 /*--------------------------------------------------------------
 # Contact
 --------------------------------------------------------------*/
+#contact-us {
+    border-radius: 10px !important;
+    width: 80%;
+}
+
+#contact-us h2 {
+    font-size: 60px;
+    font-weight: 600;
+}
+
+#contact-us p {
+    font-size: 20px;
+    font-weight: 400;
+    margin-right: 5vh
+}
+
 .contact {
   padding-top: 5px;
 }
@@ -1553,7 +1569,7 @@ section {
   font-size: 18px;
   display: inline-block;
   background: #0015D6;
-  color: #fff;
+  color: #fff !important;
   line-height: 1;
   padding: 8px 0;
   margin-right: 4px;
